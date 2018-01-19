@@ -354,6 +354,11 @@ button[disabled] {
     display: inline;
   }
 }
+@media (min-width: 900px) {
+  .session .exerciseBody .exerciseBody__image {
+    width: 50%;
+  }
+}
 /**
  * End Session
  */
