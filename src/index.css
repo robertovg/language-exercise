@@ -1,0 +1,359 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+/**
+ * Some css variables
+ */
+:root {
+  --black: rgba(0, 0, 0, 0.6);
+  --borders-color: #ccc;
+  --whity-backgroudn: #ecf0f1;
+  --fail: #e74c3c;
+  --pass: #2ecc71;
+  --pending: #7578ff;
+  --shadow--1: rgba(0, 0, 0, 0.12);
+  --shadow--2: rgba(0, 0, 0, 0.24);
+  --shadow--3: rgba(0, 0, 0, 0.25);
+  --shadow--4: rgba(0, 0, 0, 0.22);
+}
+/**
+ * Start General
+ */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  color: var(--black);
+}
+a,
+a:active,
+:active {
+  text-decoration: none;
+  color: initial;
+}
+.header__logo {
+  width: 45px;
+  height: 45px;
+}
+button {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px var(--shadow--1), 0 1px 2px var(--shadow--2);
+  background-color: var(--whity-backgroudn);
+  color: var(--black);
+  transition: background-color 0.3s;
+  height: 50px;
+  min-width: 70px;
+}
+button:hover,
+button:focus {
+  background-color: var(--borders-color);
+  box-shadow: 0 14px 28px var(--shadow--3), 0 10px 10px var(--shadow--4);
+}
+button.little {
+  margin: 0;
+  height: auto;
+  min-width: unset;
+}
+button[disabled] {
+  color: var(--borders-color);
+}
+button[disabled] {
+  background-color: initial;
+  box-shadow: 0 1px 3px var(--shadow--1), 0 1px 2px var(--shadow--2);
+}
+/**
+ * End General
+ */
+/**
+ * Start Lessons
+ */
+.lessons {
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  grid-template: 100px 50px 1fr / auto;
+  grid-gap: 10px 10px;
+  align-items: center;
+}
+.lessons .header {
+  grid-area: 1 / 1 / 2 / -1;
+}
+
+.lessons .header .header__logo {
+  display: none;
+}
+.lessons .actionTitle {
+  grid-area: 2 / 1 / 3 / -1;
+}
+.lessons .lessonGrid {
+  grid-area: 3 / 1 / -1 / -1;
+  display: grid;
+  grid-template: 100px / 1fr 1fr;
+  grid-auto-rows: 100px;
+  grid-gap: 30px 30px;
+  width: 100%;
+}
+.lessons .lessonGrid .lessonItem {
+  min-width: 100px;
+  border: solid 1px var(--borders-color);
+  box-shadow: 0 1px 3px var(--shadow--1), 0 1px 2px var(--shadow--2);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.lessons .lessonGrid .lessonItem--electable:hover {
+  box-shadow: 0 14px 28px var(--shadow--3), 0 10px 10px var(--shadow--4);
+}
+
+.lessons .lessonGrid .lessonItem a {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.lessons .lessonGrid .lessonItem .lessonItem__title {
+  padding-top: 30px;
+}
+/**
+ * Changes for biger screens
+ */
+@media (min-width: 700px) {
+  .lessons .header .header__logo {
+    display: inline;
+  }
+  .lessons .lessonGrid {
+    grid-template: 100px / 1fr 1fr 1fr;
+  }
+}
+/**
+ * End Lessons
+ */
+
+/**
+ * Start Session
+ */
+.session {
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  grid-template: 50px 1fr / 1fr;
+  grid-gap: 10px 10px;
+}
+.session .session__header {
+  grid-area: 1 / 1 / 2 / -1;
+  display: grid;
+  grid-template-columns: 45px 55px auto 100px;
+  grid-template-areas: 'logo title progress actions';
+  align-items: center;
+}
+
+.session .session__header a {
+  grid-area: logo;
+  display: block;
+  justify-self: start;
+}
+
+.session .session__header .header__title {
+  grid-area: title;
+  display: none;
+}
+
+.session .session__header .header__progress {
+  grid-area: progress;
+}
+
+.session .header__actions {
+  grid-area: actions;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.session .header__actions .header__answer--ok span {
+  color: var(--pass);
+}
+
+.session .header__actions .header__answer--ok {
+  border-right: solid 1px var(--borders-color);
+  padding-right: 10px;
+}
+
+.session .header__actions .header__answer--bad span {
+  color: var(--fail);
+}
+
+.session .lesson {
+  grid-area: 2 / 1 / 3 / -1;
+  display: grid;
+  grid-template-rows: 100px 1fr 200px;
+}
+
+.session .lesson .exerciseHeader {
+  display: grid;
+  grid-template-columns: 100px 1fr 100px;
+  grid-template-areas: 'left central right';
+  justify-content: space-between;
+  align-items: center;
+  border-top: solid 1px var(--borders-color);
+  border-bottom: solid 1px var(--borders-color);
+  box-shadow: 0 1px 3px var(--shadow--1), 0 1px 2px var(--shadow--2);
+}
+
+.session .lesson .exerciseBody {
+  display: grid;
+  grid-template-columns: 0px 1fr 0px;
+  grid-template-areas: 'left central right';
+  justify-content: space-between;
+  align-items: center;
+  justify-items: center;
+}
+
+.session .lesson .exerciseFooter {
+  display: grid;
+  grid-template: 100px 100px / 0px 1fr 0px;
+  grid-template-areas:
+    'top-left top-central top-right'
+    'left central right';
+  justify-content: space-between;
+  align-items: center;
+}
+.session .lesson .exerciseFooter--pending {
+  background-color: var(--pending);
+}
+
+.session .lesson .exerciseFooter--ok {
+  background-color: var(--pass);
+}
+
+.session .lesson .exerciseFooter--fail {
+  background-color: var(--fail);
+}
+
+.session .lesson .exerciseBody .exerciseBody__answer {
+  font-size: x-large;
+}
+.session .lesson .exerciseBody .exerciseBody__answer .exerciseBody__selection {
+  color: var(--pending);
+}
+
+.session
+  .lesson
+  .exerciseBody
+  .exerciseBody__answer--ok
+  .exerciseBody__selection {
+  color: var(--ok);
+}
+
+.session
+  .lesson
+  .exerciseBody
+  .exerciseBody__answer--fail
+  .exerciseBody__selection {
+  color: var(--fail);
+}
+
+.session .lesson .exerciseBody .exerciseBody__answer .exerciseBody__selection {
+  font-weight: bold;
+}
+
+.session .lesson .exerciseFooter .exerciseFooter__explanation,
+.session .lesson .exerciseFooter .exerciseFooter__options {
+  grid-area: top-central;
+  display: grid;
+  justify-content: stretch;
+  grid-auto-flow: column;
+  grid-gap: 20px;
+}
+
+.session .lesson .exerciseFooter .exerciseFooter__explanation {
+  grid-area: top-central;
+  display: grid;
+  justify-content: center;
+  grid-auto-flow: row;
+  align-content: center;
+}
+
+.session .lesson .exerciseFooter .exerciseFooter__explanationLine {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  grid-gap: 20px;
+}
+
+.session .lesson .exerciseFooter .exerciseFooter__controls {
+  grid-area: central;
+  display: grid;
+  justify-content: space-around;
+  grid-auto-flow: column;
+}
+
+.session .exerciseHeader .exerciseHeader__instructions,
+.session .exerciseHeader .exerciseHeader__help {
+  display: none;
+}
+.session .exerciseHeader .exerciseHeader__explanation {
+  grid-area: central;
+}
+
+.session .exerciseBody .exerciseBody__image,
+.session .exerciseBody .exerciseBody__result {
+  grid-area: 1 / 2;
+}
+.session .exerciseBody .exerciseBody__result {
+  align-self: end;
+  padding: 10px;
+  border-radius: 25px;
+  align-self: end;
+}
+
+.session .exerciseBody .exerciseBody__result--fail {
+  background-color: var(--fail);
+}
+
+.session .exerciseBody .exerciseBody__result--ok {
+  background-color: var(--pass);
+}
+
+.session .exerciseBody .exerciseBody__answer {
+  grid-area: 2 / 1 / -1 / -1;
+}
+.session .exerciseBody .exerciseBody__image {
+  width: 100%;
+}
+.session .exerciseFooter .exerciseFooter__answers {
+  display: none;
+}
+
+@media (min-width: 700px) {
+  .session .session__header .header__title {
+    display: inline;
+  }
+
+  .session .lesson .exerciseBody {
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+    grid-template-areas: 'left central right';
+    justify-content: space-between;
+  }
+  .session .lesson .exerciseFooter {
+    display: grid;
+    grid-template: 100px 100px / 100px 1fr 100px;
+    grid-template-areas:
+      'top-left top-central top-right'
+      'left central right';
+  }
+  .session .exerciseHeader .exerciseHeader__instructions,
+  .session .exerciseHeader .exerciseHeader__help,
+  .session .exerciseFooter .exerciseFooter__answers {
+    display: inline;
+  }
+}
+/**
+ * End Session
+ */
